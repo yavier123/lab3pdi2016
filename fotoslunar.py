@@ -10,21 +10,28 @@ lunargris.save("fotoslunarprurba.png")
 red.save("fotoenrojo.png")
 green.save("fotoenverde.png")
 blue.save("fotoenazul.png")
+
+#codigo para encontrarn manchas solo se a echo en escala de grises  
 prueba69=lunargris.binarize() #la binarizo por que se vera mejor asi 
 mancha=prueba69.findBlobs() #ocupo el comando para encontrar lasmanchas (lunares)
 mancha.show(Color.YELLOW)
+prueba69.save("porfavorguardate3.png")
 
-invertidos=pruebalunar.invert()
-blob=invertidos.findBlobs()
+invertidos=pruebalunar.invert()#se invierte la imagen para obtener manchas negras en la foto
+blob=invertidos.findBlobs()#se ve si se encuentrasn las mannchas en la foto invertida
 blob.show(width=2)
 pruebalunar.addDrawingLayer(invertidos.dl())
 pruebalunar.show()
-pruebalunar.save("porfavorguardate2.png")
+pruebalunar.save("porfavorguardate2.png") #guardamos la imagen 
 
-
+#enncontrar manchas por color especifico para el cual tenemos:
 brown_distance=pruebalunar.colorDistance(Color.BLACK).invert()
 blobs2_=brown_distance.findBlobs()
+blobs2_.draw(color=Color.PUCE,width=3)#se va  hacer el mismo ejemplo de la guia
 brown_distance.show()
+pruebalunar.addDrawingLayer(brown_distance.dl())
+pruebalunar.show()
+pruebalunar.save("Porfavorguaradte5.png")
 
 #lineas=pruebalunar.findLines()
 #lineas.draw(width=3)
