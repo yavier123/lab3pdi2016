@@ -1,21 +1,31 @@
 #! /usr/bin/python
-from SimpleCV import Image, Camera, Color
+from SimpleCV import Image, Camera, Color #nueva libreria color para los comandos de color
 #cam = Camera()
 #img = cam.getImage()
 #img.save("lunar1.jpg")
-pruebalunar=Image("lunar5nico.png")
+pruebalunar=Image("lunar5nico.png") #nombre de lka imagen que quieres cargar
 lunargris=pruebalunar.grayscale()
 lunargris.save("fotoslunarprurba.png")
-(red,green,blue)=pruebalunar.splitChannels(False)
+(red,green,blue)=pruebalunar.splitChannels(False) # la separo en RGB
 red.save("fotoenrojo.png")
 green.save("fotoenverde.png")
 blue.save("fotoenazul.png")
-prueba69=lunargris.binarize()
-mancha=prueba69.findBlobs()
-mancha.show()
+prueba69=lunargris.binarize() #la binarizo por que se vera mejor asi 
+mancha=prueba69.findBlobs() #ocupo el comando para encontrar lasmanchas (lunares)
+mancha.show(Color.YELLOW)
+
+invertidos=pruebalunar.invert()
+blob=invertidos.findBlobs()
+blob.show(width=2)
+pruebalunar.addDrawingLayer(invertidos.dl())
+pruebalunar.show()
+pruebalunar.save("porfavorguardate2.png")
+
+
 brown_distance=pruebalunar.colorDistance(Color.BLACK).invert()
 blobs2_=brown_distance.findBlobs()
 brown_distance.show()
+
 #lineas=pruebalunar.findLines()
 #lineas.draw(width=3)
 #pruebalunar.show()
